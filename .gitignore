@@ -45,3 +45,6 @@ app.*.map.json
 
 # Firebase related
 .firebase
+
+#node related
+/node_modules
