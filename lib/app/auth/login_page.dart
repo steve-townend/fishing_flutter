@@ -20,56 +20,59 @@ class LoginPage extends StatelessWidget {
 
     return AppBarAndNavBarScaffold(
       navName: "Login",
-      body: Center(
-        
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            
-            const Icon(
-              Icons.lock,
-              size: 100),
-            
-            const SizedBox(height: 50),
-            Text(
-              "Welcome back, please login",
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 16
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Center(
+          child: Column(
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              
+              const SizedBox(height: 25),
+              const Icon(
+                Icons.lock,
+                size: 50),
+              
+              const SizedBox(height: 50),
+              Text(
+                "Welcome back, please login",
+                style: TextStyle(
+                  color: Colors.grey[700],
+                  fontSize: 16
+                ),
               ),
-            ),
-            
-            const SizedBox(height: 25),
-            StyledTextField(
-              hintText: "Username",
-              obscureText: false,
-              controller: usernameController,
-              maxWidth: 250,
-            ),
-
-            const SizedBox(height: 10),
-            StyledTextField(
-              hintText: "Password",
-              obscureText: true,
-              controller: passwordController,
-              maxWidth: 250,
-            ),
-
-            const SizedBox(height: 25),
-            StyledButton(
-              onTap: () async {
-                try {
-                  await context.read<AuthProviderController>().login(usernameController.text, passwordController.text);
-                  showMessage(message: "Welcome");
-                } catch (ex) {
-                  showMessage(message: ex.toString(), failed: true);
-                }
-              }, 
-              text: "Sign in",
-              maxWidth: 250,
-            ),
-
-          ],
+              
+              const SizedBox(height: 25),
+              StyledTextField(
+                hintText: "Username",
+                obscureText: false,
+                controller: usernameController,
+                maxWidth: 250,
+              ),
+      
+              const SizedBox(height: 10),
+              StyledTextField(
+                hintText: "Password",
+                obscureText: true,
+                controller: passwordController,
+                maxWidth: 250,
+              ),
+      
+              const SizedBox(height: 25),
+              StyledButton(
+                onTap: () async {
+                  try {
+                    await context.read<AuthProviderController>().login(usernameController.text, passwordController.text);
+                    showMessage(message: "Welcome");
+                  } catch (ex) {
+                    showMessage(message: ex.toString(), failed: true);
+                  }
+                }, 
+                text: "Sign in",
+                maxWidth: 250,
+              ),
+      
+            ],
+          ),
         ),
       ),
     );
