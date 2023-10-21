@@ -55,16 +55,16 @@ class HomePage extends StatelessWidget {
                   return Center(child: Text('Logged In: ${context.read<AuthProviderController>().loggedIn}'));
                 }
               ),
-              const SizedBox(height: 32),
-              ElevatedButton(
-                child: const Text('Login'),
-                onPressed: () async {
-                  context.read<AuthProviderController>().login("dummy2");
+              // const SizedBox(height: 32),
+              // ElevatedButton(
+              //   child: const Text('Login'),
+              //   onPressed: () async {
+              //     context.read<AuthProviderController>().login("dummy2");
                   
-                  // await _authService.setAccessToken("dummy");
-                  // Navigator.pushNamed(context, "/home");
-                },
-              ),
+              //     // await _authService.setAccessToken("dummy");
+              //     // Navigator.pushNamed(context, "/home");
+              //   },
+              // ),
 
               Text(
                 'Keep a check on the rivers that you frequent for your leisure or work activities. \n\nYou can easily browse by location or can search by name or proximity. \n\nSign In to select favourite locations then set high and low level thresholds that will send notifications whenever those thresholds are breached.',

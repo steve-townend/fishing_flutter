@@ -43,8 +43,9 @@ class AuthService {
     // debugPrint('AuthService:setupStorage() storage is ready');
   }
 
-  Future login(String token) async {
-    await _storage.setItem(AUTH_TOKEN_NAME, token);
+  Future login(String username, String password) async {
+    // throw Exception("Invalid creds");
+    await _storage.setItem(AUTH_TOKEN_NAME, "$username-$password");
   }
 
   Future logout() async {

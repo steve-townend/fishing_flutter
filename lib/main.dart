@@ -2,6 +2,7 @@
 
 import 'package:_app_framework/app/auth/auth_page.dart';
 import 'package:_app_framework/app/auth/auth_provider_controller.dart';
+import 'package:_app_framework/common_models/constants.dart';
 import 'package:_app_framework/common_services/auth_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -73,6 +74,7 @@ class MyApp extends StatelessWidget {
         // }
 
         return MaterialApp(
+          scaffoldMessengerKey: snackbarKey,
           theme: ThemeData(primarySwatch: MaterialColor(0xFF4F7942, colorService.colorSwatchShades)),
           debugShowCheckedModeBanner: false,
           //initialRoute: "/authPage",
@@ -81,7 +83,7 @@ class MyApp extends StatelessWidget {
             "/home": (_) => const HomePage(),
             "/testRestAPI": (_) => const RestApi(),
             "/about": (_) => const AboutPage(),
-            "/login": (_) => const LoginPage(),
+            "/login": (_) => LoginPage(),
             "/authPage": (_) => const AuthPage(),
 
             "/browse": (_) => const BrowsePage(),

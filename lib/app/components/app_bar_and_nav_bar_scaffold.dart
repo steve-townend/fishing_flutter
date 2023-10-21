@@ -27,7 +27,7 @@ class AppBarAndNavBarScaffold extends StatelessWidget {
     var navBarItems = _appSettingsService.getNavigationBarItems();
 
     return Scaffold(
-
+      backgroundColor: Colors.grey[300],
       appBar: AppBar(
         title: Text("${_appSettingsService.appName} ${navName != null ? ": $navName" : ""}"),
         actions: <Widget>[
@@ -81,7 +81,9 @@ class AppBarAndNavBarScaffold extends StatelessWidget {
               Navigator.pushNamed(context, _appSettingsService.getRouteByIndex(index).routeName, arguments: "");
           },
         ),
-      body: body
+      body: SafeArea(
+        child: body
+      )
     );
   }
 
