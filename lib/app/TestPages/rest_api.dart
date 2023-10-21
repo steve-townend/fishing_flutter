@@ -4,7 +4,7 @@ import 'package:_app_framework/common_services/api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../models/us_data.dart';
+import '../../common_models/us_data.dart';
 import '../../common_services/logging_service.dart';
 import '../components/app_bar_and_nav_bar_scaffold.dart';
 

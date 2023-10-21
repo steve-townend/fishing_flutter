@@ -5,7 +5,7 @@ class AppSettingsService {
   final String appName = "Fishing";
   final String author = "Steve Townend";
   final String appUrl = "https//fishing.townend.dev";
-  final String appLogo = "images/icon.png";
+  final String appLogo = "images/fisherman-3719443-logo.png";
 
   // Icon not used at present, prefer appLogo image
   static const IconData iconData = Icons.person_2;

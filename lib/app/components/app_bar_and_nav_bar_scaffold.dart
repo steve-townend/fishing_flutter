@@ -1,6 +1,8 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:_app_framework/app/auth/auth_provider_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 //import '../../common_services/logging_service.dart';
 import '../../ioc.dart';
@@ -16,10 +18,11 @@ class AppBarAndNavBarScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _appSettingsService = getIt.get<AppSettingsService>();
-    // final _loggingService = getIt.get<LoggingService>();
 
-    // final _logger = _loggingService.getLogger(this);
-    //final colorService = Provider.of<ColorService>(context, listen: false);
+    // if (navName != "Login")
+    // {
+    //   context.read<AuthProviderController>().checkLoginState();                  
+    // }
 
     var navBarItems = _appSettingsService.getNavigationBarItems();
 
@@ -27,14 +30,14 @@ class AppBarAndNavBarScaffold extends StatelessWidget {
 
       appBar: AppBar(
         title: Text("${_appSettingsService.appName} ${navName != null ? ": $navName" : ""}"),
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back),
-        //   onPressed: () {
-        //     _logger.i("Back was pressed!!!");
-        //     Navigator.of(context).pop(true);
-        //   }, 
-        // ),
         actions: <Widget>[
+          IconButton(
+            tooltip: "Logout",
+            icon: const Icon(Icons.logout),
+            onPressed: () async {
+              context.read<AuthProviderController>().logout();
+            }, 
+          ),
           PopupMenuButton(
             // add icon, by default "3 dot" icon
             // icon: Icon(Icons.book)
@@ -81,5 +84,6 @@ class AppBarAndNavBarScaffold extends StatelessWidget {
       body: body
     );
   }
+
 }
 
