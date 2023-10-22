@@ -4,6 +4,8 @@ import 'package:_app_framework/app/auth/auth_provider_controller.dart';
 import 'package:_app_framework/app/components/styled_button.dart';
 import 'package:_app_framework/app/components/styled_textfield.dart';
 import 'package:_app_framework/common_models/constants.dart';
+import 'package:_app_framework/common_services/snack_service.dart';
+import 'package:_app_framework/ioc.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +19,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final snackService = getIt.get<SnackService>();
 
     return AppBarAndNavBarScaffold(
       navName: "Login",
@@ -61,10 +65,10 @@ class LoginPage extends StatelessWidget {
               StyledButton(
                 onTap: () async {
                   try {
-                    await context.read<AuthProviderController>().login(usernameController.text, passwordController.text);
-                    showMessage(message: "Welcome");
+                    var name = await context.read<AuthProviderController>().login(usernameController.text, passwordController.text);
+                    snackService.showMessage(message: "Welcome $name");
                   } catch (ex) {
-                    showMessage(message: ex.toString(), failed: true);
+                    snackService.showMessage(message: ex.toString(), failed: true);
                   }
                 }, 
                 text: "Sign in",

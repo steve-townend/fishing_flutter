@@ -2,12 +2,17 @@
 
 //#region APIs
 
+import 'dart:core';
+
 import 'package:flutter/material.dart';
 
 const bool isProduction = bool.fromEnvironment('dart.vm.product');
 
-// const String API_BASE_PROD = "https://services.riverwatchapp.co.uk";
-// const String API_BASE_DEV = "http://localhost:55275";
+const String API_BASE_PROD = "https://6u9025w4r1.execute-api.eu-west-2.amazonaws.com/Prod/api";
+const String API_BASE_DEV = "https://localhost:56202/api";
+
+const String API_LIST_USERS = "/users";
+const String API_AUTHENTICATE = "/users/authenticate";
 
 // const String API_BROWSE = "api/browse";
 // const String API_STATIONS_IN_RIVER = "api/browse/stationsinriver";
@@ -16,6 +21,8 @@ const bool isProduction = bool.fromEnvironment('dart.vm.product');
 // const String API_STATION = "api/station";
 // const String API_SAVE_THRESHOLDS = "api/user/saveThresholds";
 // const String API_DELETE_FAVOURITE = "api/user/StopMonitoring";
+
+const String API_ANONYMOUS_CSV = "/users/authenticate";
 
 //#endregion APIs
 

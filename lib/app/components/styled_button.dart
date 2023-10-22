@@ -26,7 +26,7 @@ class StyledButton extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xCC4F7942),
+                color: const Color(0xFF4F7942),
                 borderRadius: BorderRadius.circular(8)),
               child: Center(
                 child: Text(

@@ -49,10 +49,11 @@ class AuthService {
     // debugPrint('AuthService:setupStorage() storage is ready');
   }
 
-  Future login(String username, String password) async {
+  Future saveToken(String token) async {
     _logger.d("AuthService: login() called");
     // throw Exception("Invalid creds");
-    await _storage.setItem(AUTH_TOKEN_NAME, "$username-$password");
+
+    await _storage.setItem(AUTH_TOKEN_NAME, token);
   }
 
   Future logout() async {

@@ -1,3 +1,4 @@
+import 'package:_app_framework/common_services/snack_service.dart';
 import 'package:get_it/get_it.dart';
 
 // import 'app/browse/repositories/browse_service.dart';
@@ -20,6 +21,7 @@ void getServices() {
   getIt.registerLazySingleton(() => AuthService());
   getIt.registerLazySingleton(() => ApiService());
   getIt.registerFactory(() => ColorService());
+  getIt.registerFactory(() => SnackService());
   getIt.registerFactory(() => LoggingService());
   getIt.registerFactory(() => AppSettingsService());
   //getIt.registerFactory(() => ApiService());  
