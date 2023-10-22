@@ -2,6 +2,7 @@
 
 import 'package:_app_framework/app/auth/auth_page.dart';
 import 'package:_app_framework/app/auth/auth_provider_controller.dart';
+import 'package:_app_framework/app/pages/log_page.dart';
 import 'package:_app_framework/common_models/constants.dart';
 import 'package:_app_framework/common_services/api_service.dart';
 import 'package:_app_framework/common_services/auth_service.dart';
@@ -16,7 +17,6 @@ import 'app/home/about_page.dart';
 import 'app/auth/login_page.dart';
 import 'app/material_app_builder.dart';
 import 'common_services/color_service.dart';
-import 'app/pages/browse_page.dart';
 import 'app/pages/search_page.dart';
 import 'app/pages/my_sites_page.dart';
 import 'ioc.dart';
@@ -91,7 +91,7 @@ class MyApp extends StatelessWidget {
             "/login": (_) => LoginPage(),
             "/authPage": (_) => const AuthPage(),
 
-            "/browse": (_) => const BrowsePage(),
+            "/log": (_) => const LogPage(),
             "/search": (_) => const SearchPage(),
             "/mySites": (_) => const MySitesPage(),
           }

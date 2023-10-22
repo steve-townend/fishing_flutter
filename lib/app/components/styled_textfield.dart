@@ -24,6 +24,10 @@ class StyledTextField extends StatelessWidget {
         child: TextField(
           controller: controller,
           obscureText: obscureText,
+          autofillHints: const {
+            AutofillHints.username,
+            AutofillHints.password
+          },
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white)
