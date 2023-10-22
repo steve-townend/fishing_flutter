@@ -18,10 +18,11 @@ void getServices() {
   //getIt.registerFactory(() => LoggingService());
 
   getIt.registerLazySingleton(() => AuthService());
+  getIt.registerLazySingleton(() => ApiService());
   getIt.registerFactory(() => ColorService());
   getIt.registerFactory(() => LoggingService());
   getIt.registerFactory(() => AppSettingsService());
-  getIt.registerFactory(() => ApiService());  
+  //getIt.registerFactory(() => ApiService());  
   // getIt.registerFactory(() => UserService());  
 
   // getIt.registerLazySingleton(() => BrowseService());

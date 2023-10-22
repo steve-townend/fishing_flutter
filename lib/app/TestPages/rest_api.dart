@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:_app_framework/common_services/api_service.dart';
+import 'package:_app_framework/ioc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 import '../../common_models/us_data.dart';
 import '../../common_services/logging_service.dart';
@@ -23,11 +23,13 @@ class RestApiState extends State<RestApi> {
   void initState() {
     super.initState();
 
-    final loggingService = Provider.of<LoggingService>(context, listen: false);
+    final loggingService = getIt.get<LoggingService>();
+    // final loggingService = Provider.of<LoggingService>(context, listen: false);
     final logger = loggingService.getLogger(this);
 
-    final apiService = ApiService();
-
+    // final apiService = ApiService();
+    final apiService = getIt.get<ApiService>();
+    
     try {
       futureUSData = apiService.fetchData<USData>('https://datausa.io/api/data?drilldowns=Nation&measures=Population', USData.parseJson);  
     } catch (ex, st) 

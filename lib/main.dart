@@ -3,6 +3,7 @@
 import 'package:_app_framework/app/auth/auth_page.dart';
 import 'package:_app_framework/app/auth/auth_provider_controller.dart';
 import 'package:_app_framework/common_models/constants.dart';
+import 'package:_app_framework/common_services/api_service.dart';
 import 'package:_app_framework/common_services/auth_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -73,6 +74,10 @@ class MyApp extends StatelessWidget {
         //   logger.e("A test error message with error", ex, st);
         // }
 
+
+        final apiService = getIt.get<ApiService>();
+        apiService.authProvider = context.read<AuthProviderController>();
+
         return MaterialApp(
           scaffoldMessengerKey: snackbarKey,
           theme: ThemeData(primarySwatch: MaterialColor(0xFF4F7942, colorService.colorSwatchShades)),
@@ -97,3 +102,4 @@ class MyApp extends StatelessWidget {
 
   
 }
+

@@ -49,6 +49,10 @@ class AppBarAndNavBarScaffold extends StatelessWidget {
                     ),
 
                     const PopupMenuItem<int>(
+                        value: 1,
+                        child: Text("Test API"),
+                    ),
+                    const PopupMenuItem<int>(
                         value: 2,
                         child: Text("About"),
                     ),
