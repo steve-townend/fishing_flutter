@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 
 import 'package:flutter/material.dart';
 
@@ -6,14 +8,29 @@ class StyledTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final double maxWidth;
-
-  const StyledTextField({
+  final bool isUsername;
+  final bool isPassword;
+  
+  StyledTextField({
     super.key,
     required this.controller,
     required this.hintText,
     required this.obscureText,
-    required this.maxWidth
-  });
+    required this.maxWidth,
+    required this.isUsername,
+    required this.isPassword
+  }) {
+    if (isUsername) {
+      _autofillHints.add(AutofillHints.username);
+    }
+
+    if (isPassword) {
+      _autofillHints.add(AutofillHints.password);
+    }
+  }
+
+  final List<String> _autofillHints = List<String>.empty(growable: true);
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +41,7 @@ class StyledTextField extends StatelessWidget {
         child: TextField(
           controller: controller,
           obscureText: obscureText,
-          autofillHints: const {
-            AutofillHints.username,
-            AutofillHints.password
-          },
+          autofillHints: _autofillHints,
           decoration: InputDecoration(
             enabledBorder: const OutlineInputBorder(
               borderSide: BorderSide(color: Colors.white)

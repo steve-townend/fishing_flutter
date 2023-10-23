@@ -49,6 +49,8 @@ class LoginPage extends StatelessWidget {
               StyledTextField(
                 hintText: "Username",
                 obscureText: false,
+                isUsername: true,
+                isPassword: false,
                 controller: usernameController,
                 maxWidth: 250,
               ),
@@ -57,6 +59,8 @@ class LoginPage extends StatelessWidget {
               StyledTextField(
                 hintText: "Password",
                 obscureText: true,
+                isUsername: false,
+                isPassword: true,
                 controller: passwordController,
                 maxWidth: 250,
               ),
