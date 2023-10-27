@@ -14,6 +14,8 @@ class AppSettingsService {
 
   var navigationPages = [
     NavigationRoute("Home", "/home", const Icon(Icons.home_outlined)),
+    NavigationRoute("Trips", "/trips", const Icon(Icons.drive_eta_outlined)),
+    NavigationRoute("Catches", "/catches", const Icon(Icons.set_meal_outlined)),
     NavigationRoute("Log", "/log", const Icon(Icons.fact_check_outlined)),
     NavigationRoute("Search", "/search", const Icon(Icons.search_outlined)),
     NavigationRoute("My Sites", "/mySites", const Icon(Icons.star_outline)),

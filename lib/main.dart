@@ -1,8 +1,11 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers
 
+import 'package:_app_framework/app/TestPages/rest_api_view_model.dart';
 import 'package:_app_framework/app/auth/auth_page.dart';
 import 'package:_app_framework/app/auth/auth_provider_controller.dart';
+import 'package:_app_framework/app/catches/views/catches_view.dart';
 import 'package:_app_framework/app/pages/log_page.dart';
+import 'package:_app_framework/app/trips/views/trips_view.dart';
 import 'package:_app_framework/common_models/constants.dart';
 import 'package:_app_framework/common_services/api_service.dart';
 import 'package:_app_framework/common_services/auth_service.dart';
@@ -58,7 +61,13 @@ class MyApp extends StatelessWidget {
     //   child: MaterialAppBuilder(builder: (context) {
 
 
-      return MaterialAppBuilder(builder: (context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<RestApiViewModel>(
+          create: (_) => RestApiViewModel(),
+        ),
+      ],
+      child:  MaterialAppBuilder(builder: (context) {
         //final colorService = Provider.of<ColorService>(context, listen: false);
         final colorService = getIt.get<ColorService>();
         //final loggingService = Provider.of<LoggingService>(context, listen: false);
@@ -86,17 +95,20 @@ class MyApp extends StatelessWidget {
           home: const AuthPage(),
           routes: {
             "/home": (_) => const HomePage(),
-            "/testRestAPI": (_) => const RestApi(),
+            "/testRestAPI": (_) => const RestApiView(),
             "/about": (_) => const AboutPage(),
             "/login": (_) => LoginPage(),
             "/authPage": (_) => const AuthPage(),
 
+            "/trips": (_) => const TripsView(),
+            "/catches": (_) => const CatchesView(),
             "/log": (_) => const LogPage(),
             "/search": (_) => const SearchPage(),
             "/mySites": (_) => const MySitesPage(),
           }
         );
-      });
+      })
+      );
     // );
   }
 
