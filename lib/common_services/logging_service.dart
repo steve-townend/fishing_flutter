@@ -4,12 +4,14 @@ import 'package:logger/logger.dart';
 
 class LoggingService {
 
+  bool debugMode = kDebugMode;
+
   Logger getLogger(dynamic caller) {
 
-    if ((kDebugMode)) {
+    if ((debugMode)) {
       return Logger(
         printer: PrettyPrinter(
-          methodCount: 2,
+          methodCount: 5,
           errorMethodCount: 5,
           lineLength: 50,
           colors: true,
@@ -19,13 +21,13 @@ class LoggingService {
       );
 
     } else {
-      return Logger(printer: SimpleLogPrinter(caller.runtimeType.toString()));
+      return Logger(printer: SimpleLogPrinter(caller.runtimeType.toString(), debugMode));
     }
   }
 
   Logger getLoggerNoCaller() {
 
-    if ((kDebugMode)) {
+    if ((debugMode)) {
       return Logger(
         printer: PrettyPrinter(
           methodCount: 2,
@@ -38,14 +40,15 @@ class LoggingService {
       );
 
     } else {
-      return Logger(printer: SimpleLogPrinter(""));
+      return Logger(printer: SimpleLogPrinter("", debugMode));
     }
   }
 }
 
 class SimpleLogPrinter extends LogPrinter {
   final String className;
-  SimpleLogPrinter(this.className);  
+  final bool debugMode;
+  SimpleLogPrinter(this.className, this.debugMode);  
   @override
   List<String> log(LogEvent event) {
     var color = PrettyPrinter.levelColors[event.level];
@@ -57,11 +60,13 @@ class SimpleLogPrinter extends LogPrinter {
       var frames = stackTraceString.split('\n');
       String newStackTraceString = "";
 
-      for (var i = 0; i < 5; i++) {
-        if (i == 0) {
-          newStackTraceString += "${'\n'}${event.error.message}${'\n'}";
+      if ((debugMode)) {
+        for (var i = 0; i < 5; i++) {
+          if (i == 0) {
+            newStackTraceString += "${'\n'}${event.error.message}${'\n'}";
+          }
+          newStackTraceString += "${frames[i]}${'\n'}";
         }
-        newStackTraceString += "${frames[i]}${'\n'}";
       }
 
       newStackTrace = StackTrace.fromString(newStackTraceString);

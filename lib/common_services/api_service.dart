@@ -39,38 +39,43 @@ class ApiService {
   Future<T> fetchData<T>(String url, T Function(String) parser) async {
 
     try {
-      Response<String> response = await dio.get(url);
+      try {
+        Response<String> response = await dio.get(url);
 
-      if (response.statusCode == 200) {
+        if (response.statusCode == 200) {
 
-        // If the server did return a 200 OK response,
-        // then parse the JSON.
-        return parser(response.data?? "");
+          // If the server did return a 200 OK response,
+          // then parse the JSON.
+          return parser(response.data?? "");
 
-      } else {
-        // If the server did not return a 200 OK response,
-        // then throw an exception.
-        // SMT: This is probably superceeded by the catch block below, now
-        //      that we are using dio
-        throw Exception('Failed to load data from: $url');
-      }
+        } else {
+          // If the server did not return a 200 OK response,
+          // then throw an exception.
+          // SMT: This is probably superceeded by the catch block below, now
+          //      that we are using dio
+          throw Exception('Failed to load data from: $url');
+        }
 
-    } on DioException catch (ex, st) {
-      if (ex.response!.statusCode == 401) {
-        var message = "Not authorised at $url, re-routing to login page";
+      } on DioException catch (ex, st) {
+        if (ex.response!.statusCode == 401) {
+          var message = "Not authorised at $url, re-routing to login page";
 
-        _logger.e(message, ex, st);
-        _authProvider?.logout();
+          _logger.e(message, ex, st);
+          _authProvider?.logout();
 
-        throw Exception(message);
+          throw Exception(message);
 
-      } else {
-        _logger.e("Failed getting data from $url, ${ex.response!.data}", ex, st);
+        } else {
+          _logger.e("Failed getting data from $url, ${ex.response!.data}", ex, st);
+          throw Exception('Failed to load data from: $url');
+        }
+      } catch (ex, st) {
+        _logger.e("Unexpected error from $url", ex, st);
         throw Exception('Failed to load data from: $url');
       }
     } catch (ex, st) {
-      _logger.e("Unexpected error from $url", ex, st);
-      throw Exception('Failed to load data from: $url');
+      _logger.e(ex.toString(), ex, st);
+      rethrow;
     }
   }
 
