@@ -12,6 +12,8 @@ const String API_BASE_PROD = "https://6u9025w4r1.execute-api.eu-west-2.amazonaws
 const String API_BASE_DEV = "https://localhost:56202/api";
 
 const String API_LIST_USERS = "/users";
+const String API_LIST_TRIPS = "/fishingTrips";
+const String API_LIST_TRIP_SUMMARIES = "/fishingTrips/getSummaries";
 const String API_AUTHENTICATE = "/users/authenticate";
 
 // const String API_BROWSE = "api/browse";

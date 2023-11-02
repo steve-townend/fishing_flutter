@@ -5,7 +5,8 @@ import 'package:_app_framework/app/auth/auth_page.dart';
 import 'package:_app_framework/app/auth/auth_provider_controller.dart';
 import 'package:_app_framework/app/catches/views/catches_view.dart';
 import 'package:_app_framework/app/pages/log_page.dart';
-import 'package:_app_framework/app/trips/views/trips_view.dart';
+import 'package:_app_framework/app/trips/view_models/trips_view_model.dart';
+import 'package:_app_framework/app/trips/views/trips_summaries_view.dart';
 import 'package:_app_framework/common_models/constants.dart';
 import 'package:_app_framework/common_services/api_service.dart';
 import 'package:_app_framework/common_services/auth_service.dart';
@@ -66,6 +67,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<RestApiViewModel>(
           create: (_) => RestApiViewModel(),
         ),
+        ChangeNotifierProvider<TripsViewModel>(
+          create: (_) => TripsViewModel(),
+        ),
       ],
       child:  MaterialAppBuilder(builder: (context) {
         //final colorService = Provider.of<ColorService>(context, listen: false);
@@ -100,7 +104,7 @@ class MyApp extends StatelessWidget {
             "/login": (_) => LoginPage(),
             "/authPage": (_) => const AuthPage(),
 
-            "/trips": (_) => const TripsView(),
+            "/trips": (_) => const TripSummariesView(),
             "/catches": (_) => const CatchesView(),
             "/log": (_) => const LogPage(),
             "/search": (_) => const SearchPage(),
