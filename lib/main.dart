@@ -4,6 +4,7 @@ import 'package:_app_framework/app/TestPages/rest_api_view_model.dart';
 import 'package:_app_framework/app/auth/auth_page.dart';
 import 'package:_app_framework/app/auth/auth_provider_controller.dart';
 import 'package:_app_framework/app/catches/views/catches_view.dart';
+import 'package:_app_framework/app/new_trip/view_models/new_trip_view_model.dart';
 import 'package:_app_framework/app/pages/log_page.dart';
 import 'package:_app_framework/app/trips/view_models/trips_view_model.dart';
 import 'package:_app_framework/app/trips/views/trips_summaries_view.dart';
@@ -70,6 +71,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<TripsViewModel>(
           create: (_) => TripsViewModel(),
         ),
+        ChangeNotifierProvider<NewTripViewModel>(
+          create: (_) => NewTripViewModel(),
+        ),
       ],
       child:  MaterialAppBuilder(builder: (context) {
         //final colorService = Provider.of<ColorService>(context, listen: false);
@@ -109,6 +113,7 @@ class MyApp extends StatelessWidget {
             "/log": (_) => const LogPage(),
             "/search": (_) => const SearchPage(),
             "/mySites": (_) => const MySitesPage(),
+
           }
         );
       })

@@ -16,13 +16,8 @@ const String API_LIST_TRIPS = "/fishingTrips";
 const String API_LIST_TRIP_SUMMARIES = "/fishingTrips/getSummaries";
 const String API_AUTHENTICATE = "/users/authenticate";
 
-// const String API_BROWSE = "api/browse";
-// const String API_STATIONS_IN_RIVER = "api/browse/stationsinriver";
-// const String API_SEARCH_STATIONS = "api/browse/searchAll";
-// const String API_FAVOURITES = "api/user/myStations";
-// const String API_STATION = "api/station";
-// const String API_SAVE_THRESHOLDS = "api/user/saveThresholds";
-// const String API_DELETE_FAVOURITE = "api/user/StopMonitoring";
+const String API_GET_REFERENCE_DATA = "/referenceData";
+const String API_NEW_TRIP = "/fishingTrips";
 
 const String API_ANONYMOUS_CSV = "/users/authenticate";
 

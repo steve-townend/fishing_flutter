@@ -86,7 +86,17 @@ class AppBarAndNavBarScaffold extends StatelessWidget {
           },
         ),
       body: SafeArea(
-        child: body
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Container(
+                constraints: const BoxConstraints(maxWidth: 600),
+                child: body
+              ),
+            ),
+          ],
+        )
       )
     );
   }

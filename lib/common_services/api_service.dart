@@ -88,7 +88,13 @@ class ApiService {
 
         // If the server did return a 200 OK response,
         // then parse the JSON.
-        return parser(response.data?? "");
+        if (response.data == "") {
+          return "";
+        } else
+        {
+          return parser(response.data?? "");
+        }
+        
 
       } else {
         // If the server did not return a 200 OK response,

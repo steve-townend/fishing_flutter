@@ -1,12 +1,20 @@
+import 'package:_app_framework/app/components/add_button.dart';
+import 'package:_app_framework/app/components/popup_form.dart';
+import 'package:_app_framework/app/new_trip/views/new_trip_form.dart';
 import 'package:_app_framework/app/trips/models/fishing_trip_summaries.dart';
+import 'package:_app_framework/common_services/snack_service.dart';
+import 'package:_app_framework/ioc.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 
 class TripSummaryItem extends StatelessWidget {
-  const TripSummaryItem({super.key, required this.trips});
+  TripSummaryItem({super.key, required this.trips});
 
   final List<FishingTripSummaries> trips;
+
+  final snackService = getIt.get<SnackService>();
+  final formKey = GlobalKey<FormState>() ;
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +23,48 @@ class TripSummaryItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextField(
-          //controller: controller,
-          decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.filter_alt_outlined),
-            hintText: 'Filters will be up here eventually',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(20),
-              borderSide: const BorderSide(color: Colors.blue)
+        Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: 
+                TextField(
+                    //controller: controller,
+                    decoration: InputDecoration(
+                      prefixIcon: const Icon(Icons.filter_alt_outlined),
+                      hintText: 'Filters will be up here eventually',
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(color: Colors.blue)
+                      ),
+                    ),
+                  //onChanged: search,
+                  )
             ),
-          ),
-          //onChanged: search,
-        ),        const SizedBox(height: 8),
+            AddButton(
+              onTap: () async {
+                var submitted = await showDialog(
+                  context: context, 
+                  barrierDismissible: false,
+                  builder: ((context) => PopupForm(
+                    title: "Create a new trip",
+                    formKey: formKey,
+                    body: NewTripForm(
+                      formKey: formKey,
+                    )
+                  )
+                ));
+
+                if (submitted) {
+                  snackService.showMessage(message: "Trip has been saved!");
+                }
+
+              } 
+            )
+          ],
+        ),
+        const SizedBox(height: 8),
         Expanded(
           child: ListView.builder(
             scrollDirection: Axis.vertical,
@@ -60,4 +98,19 @@ class TripSummaryItem extends StatelessWidget {
       ]
     );
   }
+/*
+   _ui(NewTripViewModel viewModel) {
+  
+  if (viewModel.loading) {
+      return const AppLoading(); 
+    }
+  
+    if (viewModel.hasError) {
+      return AppError(appError: viewModel.browseError); 
+    }
+
+    return NewTripForm(viewModel: viewModel, formKey: _formKey);
+ }
+ */
 }
+
